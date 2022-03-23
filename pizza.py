@@ -6,7 +6,7 @@ class Order_Pizza:
     def __init__(self):
         self.main_window = tkinter.Tk()
 
-        self.main_window.geometry("500x330")
+        self.main_window.geometry("700x500")
         self.main_window.title("Pizza Order")
         self.main_window.configure(bg ="Blue")
 
@@ -15,12 +15,9 @@ class Order_Pizza:
         self.bottom_frame = tkinter.Frame(self.main_window,bg = "Blue")
 
 
-        self.prompt_label = tkinter.Label(self.name_frame, text = "Enter Customer Full Name: ",bg = "Red",fg = "White")
-
-        self.Toppings_Label = tkinter.Label(self.middle_frame,text = "Toppings: ",bg= "Red",fg = "White")
-
-        self.Crusts_Label = tkinter.Label(self.bottom_frame,text = "Type of Crust: ",bg= "Red",fg = "White")
-
+        self.prompt_label = tkinter.Label(self.name_frame, text = "Enter Customer Full Name: ",bg = "Red",fg = "White", font = ("Times New Roman",12))
+        self.Toppings_Label = tkinter.Label(self.middle_frame,text = "Toppings: ",bg= "Red",fg = "White",font = ("Times New Roman",12))
+        self.Crusts_Label = tkinter.Label(self.bottom_frame,text = "Type of Crust: ",bg= "Red",fg = "White",font = ("Times New Roman",12))
         self.Customer_Entry = tkinter.Entry(self.name_frame, width = 60)
 
         self.prompt_label.pack(side = "left")
@@ -37,6 +34,7 @@ class Order_Pizza:
         self.toppings5_var = tkinter.IntVar()
         self.toppings6_var = tkinter.IntVar()
         self.toppings7_var = tkinter.IntVar()
+        self.toppings8_var = tkinter.IntVar()
 
         self.radio_var = tkinter.IntVar()
 
@@ -50,14 +48,16 @@ class Order_Pizza:
         self.toppings5_var.set(0)
         self.toppings6_var.set(0)
         self.toppings7_var.set(0)
+        self.toppings8_var.set(0)
 
         self.cb1 = tkinter.Checkbutton(self.middle_frame, text = "Pepperoni", variable = self.cb_var1)
         self.cb2 = tkinter.Checkbutton(self.middle_frame, text = "Ham", variable = self.cb_var2)
-        self.cb3 = tkinter.Checkbutton(self.middle_frame, text = "Pineapple", variable = self.cb_var3)
-        self.toppings4 = tkinter.Checkbutton(self.middle_frame, text = "Tomato", variable = self.toppings4_var)
-        self.toppings5 = tkinter.Checkbutton(self.middle_frame, text = "Olive", variable = self.toppings5_var)
+        self.cb3 = tkinter.Checkbutton(self.middle_frame, text = "Pineapples", variable = self.cb_var3)
+        self.toppings4 = tkinter.Checkbutton(self.middle_frame, text = "Tomatos", variable = self.toppings4_var)
+        self.toppings5 = tkinter.Checkbutton(self.middle_frame, text = "Olives", variable = self.toppings5_var)
         self.toppings6 = tkinter.Checkbutton(self.middle_frame, text = "Green Peppers", variable=self.toppings6_var)
         self.toppings7 = tkinter.Checkbutton(self.middle_frame, text = "Spinach", variable = self.toppings7_var)
+        self.toppings8 = tkinter.Checkbutton(self.middle_frame, text = "Onions", variable = self.toppings8_var)
 
         self.rb1 = tkinter.Radiobutton(self.bottom_frame, text = "Thick/Regular", variable = self.radio_var, value = 1)
         self.rb2 = tkinter.Radiobutton(self.bottom_frame, text = "Thin", variable = self.radio_var,value = 2)
@@ -75,6 +75,7 @@ class Order_Pizza:
         self.toppings5.pack(side = "left")
         self.toppings6.pack(side = "left")
         self.toppings7.pack(side = "left")
+        self.toppings8.pack(side = "left")
 
         self.rb1.pack(side = "left")
         self.rb2.pack(side = "left")
@@ -102,36 +103,40 @@ class Order_Pizza:
 #########################################################################################################################
 
     def calc(self):
-        self.message = "The Pizza Toppings & Crust seleted:   \n"
+        self.message = "Pizza Toppings & Crust selected:   \n"
         self.total = 0
 
         if self.cb_var1.get() == 1:
-             self.message += ' Pepperoni \n'
-             self.total += 7
+             self.message += 'Pepperoni \n'
+             self.total += 8
 
         if self.cb_var2.get() == 1:
-            self.message += ' Ham \n'
+            self.message += 'Ham \n'
             self.total += 8
 
         if self.cb_var3.get() == 1:
-            self.message += ' Pineapple \n'
+            self.message += 'Pineapples \n'
             self.total += 5
 
         if self.toppings4_var.get() == 1:
-            self.message += ' Tomato \n'
-            self.total += 2
+            self.message += 'Tomatoes \n'
+            self.total += 3
 
         if self.toppings5_var.get() == 1:
-            self.message += ' Olive \n'
+            self.message += 'Olives \n'
             self.total += 3
 
         if self.toppings6_var.get() == 1:
-            self.message += ' Green Peppers \n'
-            self.total += 2
+            self.message += 'Green Peppers \n'
+            self.total += 3
 
         if self.toppings7_var.get() == 1:
-           self.message += ' Spinach \n'
-           self.total += 5
+           self.message += 'Spinach \n'
+           self.total += 3
+
+        if self.toppings8_var.get() == 1:
+           self.message += 'Onions \n'
+           self.total += 3
 
         if self.radio_var.get() == 1:
             self.message += 'Thick/Regular \n'
@@ -146,16 +151,14 @@ class Order_Pizza:
             self.total += 2
 
         if self.radio_var.get() == 4:
-            self.message += 'Brooklyn Style \n '
+            self.message += 'Pan Style \n '
             self.total += 3
 
-
         if self.radio_var.get() == 5:
-            self.message += 'Brooklyn Style \n '
+            self.message += 'Gluten Free \n '
             self.total += 5
 
            
-        tkinter.messagebox.showinfo("Order Receipt",self.message+'\n Total Cost: '+ self.Customer_Entry.get()
-        +'\n Comes out to a total of: $'+ str(self.total))
+        tkinter.messagebox.showinfo("Order Receipt",self.message + "\n" + "Customer Name: " + self.Customer_Entry.get() + "\n"  + "Total Cost: $" + str(self.total))
 
 customer_order = Order_Pizza()
